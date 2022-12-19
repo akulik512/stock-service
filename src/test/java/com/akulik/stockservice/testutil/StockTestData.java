@@ -1,12 +1,14 @@
 package com.akulik.stockservice.testutil;
 
+import com.akulik.stockservice.stock.domain.model.Stock;
+import com.akulik.stockservice.stock.domain.model.Stock.StockBuilder;
 import com.akulik.stockservice.stock.persistance.entity.StockEntity;
 import com.akulik.stockservice.stock.persistance.entity.StockEntity.StockEntityBuilder;
 
 import java.math.BigDecimal;
 import java.util.function.Consumer;
 
-public class StockEntityTestData {
+public class StockTestData {
 
     private static final String COMPANY_NAME = "Stock Servoce";
     private static final String SHARE_NAME = "NSE:DRREDDY";
@@ -17,6 +19,29 @@ public class StockEntityTestData {
     private static final Integer VOLUME = 2;
     private static final String DATE = "20221219";
     private static final Integer EMPLOYEE_ID = 12345;
+
+    public static Stock buildStock() {
+        return buildStock(null);
+    }
+
+    public static Stock buildStock(Consumer<StockBuilder> modifier) {
+        final StockBuilder builder = Stock.builder()
+                .companyName(COMPANY_NAME)
+                .shareName(SHARE_NAME)
+                .shareIsinCode(SHARE_ISIN_CODE)
+                .country(COUNTRY)
+                .fieldEconomicActivity(FIELD_ECONOMIC_ACTIVITY)
+                .pricePerShare(PRICE_PER_SHARE)
+                .volume(VOLUME)
+                .date(DATE)
+                .employeeId(EMPLOYEE_ID);
+
+        if (modifier != null) {
+            modifier.accept(builder);
+        }
+
+        return builder.build();
+    }
 
     public static StockEntity buildStockEntity() {
         return buildStockEntity(null);

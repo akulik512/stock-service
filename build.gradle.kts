@@ -30,6 +30,8 @@ dependencies {
 	annotationProcessor("org.projectlombok:lombok")
 	runtimeOnly("com.h2database:h2")
 	implementation("org.liquibase:liquibase-core")
+	implementation("org.mapstruct:mapstruct:1.5.3.Final")
+	annotationProcessor("org.mapstruct:mapstruct-processor:1.5.3.Final")
 }
 
 tasks.withType<Test> {

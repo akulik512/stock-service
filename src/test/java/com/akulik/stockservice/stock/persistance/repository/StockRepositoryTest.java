@@ -1,7 +1,7 @@
 package com.akulik.stockservice.stock.persistance.repository;
 
 import com.akulik.stockservice.stock.persistance.entity.StockEntity;
-import com.akulik.stockservice.testutil.StockEntityTestData;
+import com.akulik.stockservice.testutil.StockTestData;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -19,7 +19,7 @@ class StockRepositoryTest {
 
     @Test
     void shouldSaveStock() {
-        final StockEntity stockEntity = StockEntityTestData.buildStockEntity();
+        final StockEntity stockEntity = StockTestData.buildStockEntity();
 
         final StockEntity savedEntity = stockRepository.save(stockEntity);
 
