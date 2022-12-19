@@ -29,6 +29,7 @@ dependencies {
 	compileOnly("org.projectlombok:lombok")
 	annotationProcessor("org.projectlombok:lombok")
 	runtimeOnly("com.h2database:h2")
+	implementation("org.liquibase:liquibase-core")
 }
 
 tasks.withType<Test> {
