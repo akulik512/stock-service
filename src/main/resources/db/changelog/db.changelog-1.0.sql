@@ -12,5 +12,5 @@ CREATE TABLE stock
     pricePerShare         numeric NOT NULL,
     volume                numeric NOT NULL,
     date                  varchar NOT NULL,
-    employeeId            uuid    NOT NULL
+    employeeId numeric NOT NULL
 )
