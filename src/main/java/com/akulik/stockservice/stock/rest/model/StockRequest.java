@@ -1,17 +1,14 @@
-package com.akulik.stockservice.stock.domain.model;
+package com.akulik.stockservice.stock.rest.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Value;
 
-import java.util.UUID;
-
 @Value
 @Builder
 @AllArgsConstructor
-public class Stock {
+public class StockRequest {
 
-    UUID stockId;
     String companyName;
     String shareName;
     String shareIsinCode;

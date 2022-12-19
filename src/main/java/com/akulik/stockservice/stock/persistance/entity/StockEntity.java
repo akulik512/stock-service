@@ -4,7 +4,6 @@ import lombok.*;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -25,7 +24,7 @@ public class StockEntity {
     private String shareIsinCode;
     private String country;
     private String fieldEconomicActivity;
-    private BigDecimal pricePerShare;
+    private String pricePerShare;
     private Integer volume;
     private String date;
     private Integer employeeId;
