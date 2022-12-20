@@ -12,8 +12,11 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.List;
+
 import static com.akulik.stockservice.testutil.StockTestData.buildStock;
 import static com.akulik.stockservice.testutil.StockTestData.buildStockRequest;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.mockito.BDDMockito.*;
 
@@ -53,6 +56,22 @@ class StockServiceTest {
 
         then(stockValidationService).should().validator(mappedStock);
         then(stockRepositoryPort).should(never()).saveStock(mappedStock);
+    }
+
+    @Test
+    void shouldReturnFoundedStocks() {
+        final Integer employeeId = 12345;
+        final Stock stock1 = buildStock(modifier -> modifier
+                .employeeId(employeeId));
+        final Stock stock2 = buildStock(modifier -> modifier
+                .employeeId(employeeId));
+        final List<Stock> stocks = List.of(stock1, stock2);
+        given(stockRepositoryPort.findStocksByEmployeeId(employeeId)).willReturn(stocks);
+
+        List<Stock> byEmployeeId = stockService.getByEmployeeId(employeeId);
+
+        assertThat(byEmployeeId).isEqualTo(stocks);
+        then(stockRepositoryPort).should().findStocksByEmployeeId(employeeId);
     }
 
 }

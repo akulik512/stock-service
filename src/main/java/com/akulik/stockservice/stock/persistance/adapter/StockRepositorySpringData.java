@@ -8,6 +8,9 @@ import com.akulik.stockservice.stock.persistance.repository.StockRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Component
 @RequiredArgsConstructor
 public class StockRepositorySpringData implements StockRepositoryPort {
@@ -19,6 +22,14 @@ public class StockRepositorySpringData implements StockRepositoryPort {
     public Stock saveStock(Stock stock) {
         final StockEntity savedStock = stockRepository.save(stockMapper.map(stock));
         return stockMapper.map(savedStock);
+    }
+
+    @Override
+    public List<Stock> findStocksByEmployeeId(Integer employeeId) {
+        return stockRepository.findByEmployeeId(employeeId)
+                .stream()
+                .map(stockMapper::map)
+                .collect(Collectors.toList());
     }
 
 }

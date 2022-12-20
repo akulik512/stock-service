@@ -8,6 +8,8 @@ import com.akulik.stockservice.stock.rest.model.StockRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 @RequiredArgsConstructor
 public class StockService {
@@ -20,6 +22,10 @@ public class StockService {
         final Stock mappedStock = stockMapper.map(requestBody);
         stockValidationService.validator(mappedStock);
         stockRepositoryPort.saveStock(mappedStock);
+    }
+
+    public List<Stock> getByEmployeeId(Integer employeeId) {
+        return stockRepositoryPort.findStocksByEmployeeId(employeeId);
     }
 
 }
